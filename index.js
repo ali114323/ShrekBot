@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 require('dotenv').config();
 const imageCreator = require("./imageCreator.js")
-const slap = require("./commands/slap.js")
 const fs = require("fs")
 
 const TOKEN = process.env.TOKEN;
@@ -12,7 +11,7 @@ const client = new Discord.Client({
         "GUILD_MEMBERS"
     ]
 })
-const prefix = 's.'
+const prefix = '-'
 
 client.commands = new Discord.Collection();
 
@@ -25,6 +24,12 @@ for(const file of commandFiles){
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}`);
+
+    client.user.setPresence({
+        activity: {
+            name: `Use ${prefix}help`
+        },
+    })
 })
 
 client.on("messageCreate", (message) => {
@@ -44,12 +49,8 @@ client.on("messageCreate", (message) => {
         client.commands.get('unmute').execute(message,args)
     }else if(command === "ban"){
         client.commands.get('ban').execute(message,args)
-    }else if(command === "slap"){
-        const img = slap(message)
-        message.reply({
-            content: "You're bald",
-            files: [img]
-        })
+    }else if(command === "help"){
+        client.commands.get('help').execute(message,args)
     }
 })
 
