@@ -1,8 +1,7 @@
 module.exports = {
     name: "ping",
     description: "Command handler testing",
-    execute(message, args){
-        if(message.member.roles.cache.has(''))
-        message.reply("It works! ")
+    execute(msg, args, client){
+        msg.reply(`Pong!\nMessage latency is *${Date.now() - msg.createdTimestamp}ms*. Discord API latency is *${Math.round(client.ws.ping)}ms*.`)
     }
 }

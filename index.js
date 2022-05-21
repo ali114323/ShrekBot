@@ -35,7 +35,7 @@ client.on("messageCreate", (message) => {
     const command = args.shift().toLowerCase()
 
     if(command === 'ping'){
-        client.commands.get('ping').execute(message, args)
+        client.commands.get('ping').execute(message, args, client)
     }else if(command === "kick"){
         client.commands.get('kick').execute(message,args)
     }else if(command === "mute"){
