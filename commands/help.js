@@ -1,24 +1,24 @@
 const { MessageEmbed } = require("discord.js")
+const fs = require("fs")
 
-const helpEmbed = new MessageEmbed()
-    .setColor('#0099ff')
-    .setTitle('**THE HELP MENU**')
-    .setDescription('**-----------**')
-    .setAuthor({name: 'Click me!', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'})
-    .addFields(
-        {name: '**-help**', value: 'Access the help command'},
-        {name: '**-kick**', value: '-kick (user)'},
-        {name: '**-ban**', value: '-ban (user)'},
-        {name: '**-mute**', value: '-mute (user) **Must have a muted role!**'},
-        {name: '**-unmute**', value: '-unmute (user)'}
-    )
-    .setFooter({ text: 'Just testing lol'})
-
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
 
 module.exports = {
     name: "help",
     description: "Display all available commands",
     execute(message, args, client){
-        message.reply({embeds: [helpEmbed]})
+
+        let myEmbed = new MessageEmbed()
+        myEmbed.setColor('#0099ff')
+        myEmbed.setTitle("**THE HELP MENU**")
+        myEmbed.setDescription("**-----------------**")
+        
+        for(const filename of commandFiles){
+            const cmd = require(`../commands/${filename}`)
+            myEmbed.addField(cmd.name,  cmd.description)
+        }
+
+        message.reply({embeds: [myEmbed]})
+
     }
 }
