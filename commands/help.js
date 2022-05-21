@@ -18,7 +18,7 @@ const helpEmbed = new MessageEmbed()
 module.exports = {
     name: "help",
     description: "Display all available commands",
-    execute(message, args){
+    execute(message, args, client){
         message.reply({embeds: [helpEmbed]})
     }
 }

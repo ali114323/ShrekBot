@@ -1,7 +1,7 @@
 module.exports = {
     name: "unmute",
     description: "Unmute a person",
-    execute(message, args){
+    execute(message, args, client){
         let member = message.mentions.members.first()
         let mutedRole = message.guild.roles.cache.find(mute => mute.name === 'muted')
         if (!member) return message.reply("Please mention a valid member")

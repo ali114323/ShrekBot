@@ -39,19 +39,10 @@ client.on("messageCreate", (message) => {
     const args = message.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
 
-    if(command === 'ping'){
-        client.commands.get('ping').execute(message, args, client)
-    }else if(command === "kick"){
-        client.commands.get('kick').execute(message,args)
-    }else if(command === "mute"){
-        client.commands.get('mute').execute(message,args)
-    }else if(command === "unmute"){
-        client.commands.get('unmute').execute(message,args)
-    }else if(command === "ban"){
-        client.commands.get('ban').execute(message,args)
-    }else if(command === "help"){
-        client.commands.get('help').execute(message,args)
-    }
+    if(!client.commands.get(command)) return message.reply("Command not found")
+
+    
+    client.commands.get(command).execute(message,args,client)
 })
 
 //const welcomeChannelId = client.guild.channels.cache.find(channel => channel.name === "general")

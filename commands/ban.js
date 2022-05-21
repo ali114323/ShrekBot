@@ -1,7 +1,7 @@
 module.exports = {
     name: "ban",
     description: "Ban a person",
-    execute(message, args){
+    execute(message, args, client){
         if(!message.member.permissions.has("BAN_MEMBERS")) return message.reply("You don't have permission")
         let member = message.mentions.members.first()
         if (!member) return message.reply("Please mention a valid member")
