@@ -1,6 +1,5 @@
 const Canvas = require("canvas");
 const Discord = require("discord.js")
-const background = "https://imgur.com/a/ywlx8r0"
 
 const dim = {
     height: 670,
@@ -21,7 +20,7 @@ const imageCreator = async (member) => {
     const canvas = Canvas.createCanvas(1200, 670)
     const ctx = canvas.getContext("2d")
     //drawing background
-    const backimg = await Canvas.loadImage("bg.jpg")
+    const backimg = await Canvas.loadImage("images/bg.jpg")
     ctx.drawImage(backimg, 0, 0)
 
     //drawing box
@@ -43,12 +42,12 @@ const imageCreator = async (member) => {
     ctx.fillStyle = "white"
     ctx.textAlign = "center"
 
-    ctx.font = "50px Roboto"
+    ctx.font = "50px Sans"
     ctx.fillText("Welcome", dim.width/2, dim.margin + 70)
-    ctx.font = "60px Roboto"
+    ctx.font = "60px Sans"
     ctx.fillText(username + discrim, dim.width/2, dim.height - dim.margin - 125)
 
-    ctx.font = "40px Roboto"
+    ctx.font = "40px Sans"
     ctx.fillText("to the server", dim.width / 2, dim.height - dim.margin - 50)
 
 
