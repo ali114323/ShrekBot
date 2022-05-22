@@ -8,7 +8,8 @@ const client = new Discord.Client({
     intents: [
         "GUILDS",
         "GUILD_MESSAGES",
-        "GUILD_MEMBERS"
+        "GUILD_MEMBERS",
+        "GUILD_MESSAGE_REACTIONS"
     ]
 })
 const prefix = '-'
@@ -24,12 +25,6 @@ for(const file of commandFiles){
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}`);
-
-    client.user.setPresence({
-        activity: {
-            name: `Use ${prefix}help`
-        },
-    })
 })
 
 client.on("messageCreate", (message) => {
