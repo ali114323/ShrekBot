@@ -7,7 +7,7 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 let AOE = 0
 
 //COUNTING VARIABLES
-const limit = 2
+const limit = 5
 let current = 0
 let currentpage = 1
 const totalpages = Math.ceil(commandFiles.length / limit)
